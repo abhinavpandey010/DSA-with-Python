@@ -21,25 +21,16 @@ class MeraList:
         
         self.A[pos] = item
         self.n = self.n + 1 
-    
-    def insertion_sort(self):
-        # firts logic
-        for i in range(1,self.n,1):
-            item = self.A[i]
-            j = i -1
-            while j >= 0 and item < self.A[j]:
-                self.A[j+1] = self.A[j]
-                j = j - 1
-            self.A[j+1] = item
-            # second logic 
-            # self.count = 0
-            # for j in range(i-1,-1,-1):
-            #     if item < self.A[j]:
-            #         self.index = j
-            #         self.A[j+1] = self.A[j]
-            #         self.count = self.count + 1
-            # if self.count != 0:
-            #     self.A[self.index] = item
+  
+    def bubbleSort(self):
+        for i in range(0,self.n-1,1):
+            for j in range(0,self.n - 1 -i,1):
+                
+                if self.A[j] > self.A[j + 1]:
+                    temp = self.A[j] 
+                    self.A[j] = self.A[j+1]
+                    self.A[j+1] = temp
+            
 
     def __resize(self,new_capacity):
         # create a new array with new capacity
@@ -68,5 +59,5 @@ L.insert(3,7)
 L.insert(4,10)
 L.insert(5,5)
 print(L)
-L.insertion_sort()
+L.bubbleSort()
 print(L)
