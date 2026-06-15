@@ -2,7 +2,7 @@ package Java.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        SinglyLinkedList ll = new SinglyLinkedList();
         ll.insertAtFirst(5);
         ll.insertAtFirst(6);
         // ll.insertAtFirst(7);
@@ -12,78 +12,47 @@ public class Main {
         ll.insertAtLast(10);
         ll.insertAtIndex(2, 12);
         ll.display();
+        ll.deleteNode(10);
+        ll.display();
+
+        // DoublyLinkedList dll = new DoublyLinkedList();
+        // dll.insertAtFirst(5);
+        // dll.insertAtFirst(6);
+        // dll.insertAtFirst(7);
+        // dll.insertAtFirst(8);
+        // dll.insertAtLast(10);
+        // dll.insertAtLast(12);
+        // dll.insertAtLast(11);
+        // // dll.insertAtIndex(2, 45);
+        // dll.display();
+        // dll.deleteNode(11);
+        // dll.display();
+
 
     }
 }
 
+//singly linked list
 class Node {
     int data;
     Node next;
+    Node prev;
 
     public Node(int data) {
         this.data = data;
         this.next = null;
+        this.prev = null;
     }
 }
+// class Node {
+//     int data;
+//     Node next;
+  
 
-class LinkedList {
-    Node head;
-    Node tail;
-    int size = 0;
+//     public Node(int data) {
+//         this.data = data;
+//         this.next = null;
 
-    public LinkedList() {
-        head = null;
-        tail = null;
-    }
+//     }
+// }
 
-    void insertAtFirst(int value) {
-        Node temp = new Node(value);
-        if (head == null) {
-            head = temp;
-            head.data = value;
-            head.next = null;
-            tail = head;
-        } else {
-            temp.next = head;
-            head = temp;
-        }
-        size++;
-    }
-    void insertAtLast(int value){
-        Node temp = new Node(value);
-        if(head == null){
-            head = temp;
-            head.data = value;
-            head.next = null;
-            tail = head;
-        }
-        else{
-            tail.next = temp;
-            tail = temp;
-        }
-        size++;
-    }
-    void insertAtIndex(int index,int value){
-        Node temp = new Node(value);
-        if(index > size - 1){
-            System.err.println("Index Out of Bound");
-            return;
-        }
-        Node newTemp = head;
-        for(int i = 0;i < index - 1;i++){
-            newTemp = newTemp.next;
-        }
-        temp.next = newTemp.next;
-        newTemp.next = temp;
-        size++;
-    }
-    void display() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " -> ");
-            temp = temp.next;
-        }
-        System.out.print("Null");
-    }
-
-}
