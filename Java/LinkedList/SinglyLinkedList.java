@@ -1,6 +1,5 @@
 package Java.LinkedList;
 
-
 class SinglyLinkedList {
     Node head;
     Node tail;
@@ -24,54 +23,71 @@ class SinglyLinkedList {
         }
         size++;
     }
-    void insertAtLast(int value){
+
+    void insertAtLast(int value) {
         Node temp = new Node(value);
-        if(head == null){
+        if (head == null) {
             head = temp;
             head.data = value;
             head.next = null;
             tail = head;
-        }
-        else{
+        } else {
             tail.next = temp;
             tail = temp;
         }
         size++;
     }
-    void insertAtIndex(int index,int value){
+
+    void insertAtIndex(int index, int value) {
         Node temp = new Node(value);
-        if(index > size - 1){
+        if (index > size || index < 0) {
             System.err.println("Index Out of Bound");
             return;
         }
+        if (index == 0) {
+            temp.next = head;
+            head = temp;
+
+            if (size == 0) {
+                tail = temp;
+            }
+
+            size++;
+            return;
+        }
         Node newTemp = head;
-        for(int i = 0;i < index - 1;i++){
+        for (int i = 0; i < index - 1; i++) {
             newTemp = newTemp.next;
         }
         temp.next = newTemp.next;
         newTemp.next = temp;
+        if (temp.next == null) {
+            tail = temp;
+        }
         size++;
     }
-    void deleteNode(int value){
-        if(head == null){
+
+    void deleteNode(int value) {
+        if (head == null) {
             System.out.println("Empty LinkedList");
             return;
         }
-        if(head.data == value){
+        if (head.data == value) {
             head = head.next;
             return;
         }
-        
+
         Node temp = head;
         Node prev = null;
-        while(temp.data != value){
+        while (temp.data != value) {
             prev = temp;
             temp = temp.next;
         }
         prev.next = temp.next;
-        System.out.println("\n"+temp.data + " deleted");
+        System.out.println("\n" + temp.data + " deleted");
         size--;
     }
+
     void display() {
         Node temp = head;
         while (temp != null) {
